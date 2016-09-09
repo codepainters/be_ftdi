@@ -1,0 +1,11 @@
+# Quartus dirs
+*.bak
+*.qws
+*/tests/*/db/
+*/tests/*/output_files/
+*/tests/*/incremental_db/
+*/tests/*/simulation/
+*/tests/*/timing/
+*/tests/*/testbench/
+*/tests/*/*_sim/
+*/tests/*/*.rpt

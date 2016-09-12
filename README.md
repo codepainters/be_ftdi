@@ -13,25 +13,26 @@ Pin mapping
 
 U5 connector:
 
-| Pin # | FIFO | Be Micro  |
-|-------|------|-----------|
-| 1     | D7   | PMOD_A[1] |
-| 2     | D6   | PMOD_B[1] |
-| 3     | D5   | PMOD_A[2] |
-| 4     | D4   | PMOD_B[2] |
-| 5     | D3   | PMOD_A[3] |
-| 6     | D2   | PMOD_B[3] |
-| 7     | D1   | PMOD_A[4] |
-| 8     | D0   | PMOD_B[4] |
+| Pin # | FIFO | Be Micro   |
+|-------|------|------------|
+| 1     | D7   | PMOD\_A[0] |
+| 2     | D6   | PMOD\_B[0] |
+| 3     | D5   | PMOD\_A[1] |
+| 4     | D4   | PMOD\_B[1] |
+| 5     | D3   | PMOD\_A[2] |
+| 6     | D2   | PMOD\_B[2] |
+| 7     | D1   | PMOD\_A[3] |
+| 8     | D0   | PMOD\_B[3] |
 
 U6 connector:
 
-| Pin # | FIFO  | Be Micro  |
-|-------|-------|-----------|
-| 1     | ~TXE  | PMOD_C[1] |
-| 2     | ~RXF  | PMOD_D[1] |
-| 3     | ~WR   | PMOD_C[2] |
-| 4     | ~RD   | PMOD_D[2] |
-| 5     | CLK   | PMOD_C[3] |
-| 6     | ~SIWU | PMOD_D[3] |
-| 8     | ~OE   | PMOD_D[4] |
+| Pin # | FIFO  | Be Micro   |
+|-------|-------|------------|
+| 1     | ~TXE  | PMOD\_C[0] |
+| 2     | ~RXF  | PMOD\_D[0] |
+| 3     | ~WR   | PMOD\_C[1] |
+| 4     | ~RD   | PMOD\_D[1] |
+| 5     | CLK   | PMOD\_C[2] |
+| 6     | ~SIWU | PMOD\_D[2] |
+| 8     | ~OE   | PMOD\_D[3] |
+

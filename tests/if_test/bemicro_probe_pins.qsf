@@ -50,39 +50,39 @@ set_instance_assignment -name CURRENT_STRENGTH_NEW 2MA -to AIN[7]
 #
 # PMOD connectors
 #
-set_location_assignment PIN_C20 -to PMOD_A[0]
-set_location_assignment PIN_D19 -to PMOD_A[1]
-set_location_assignment PIN_D18 -to PMOD_A[2]
-set_location_assignment PIN_E18 -to PMOD_A[3]
-set_location_assignment PIN_E19 -to PMOD_B[0]
-set_location_assignment PIN_F18 -to PMOD_B[1]
-set_location_assignment PIN_F20 -to PMOD_B[2]
-set_location_assignment PIN_G19 -to PMOD_B[3]
-set_location_assignment PIN_U18 -to PMOD_C[0]
-set_location_assignment PIN_U17 -to PMOD_C[1]
-set_location_assignment PIN_R18 -to PMOD_C[2]
+set_location_assignment PIN_C20 -to f_D[7]
+set_location_assignment PIN_D19 -to f_D[5]
+set_location_assignment PIN_D18 -to f_D[3]
+set_location_assignment PIN_E18 -to f_D[1]
+set_location_assignment PIN_E19 -to f_D[6]
+set_location_assignment PIN_F18 -to f_D[4]
+set_location_assignment PIN_F20 -to f_D[2]
+set_location_assignment PIN_G19 -to f_D[0]
+set_location_assignment PIN_U18 -to f_nTXE
+set_location_assignment PIN_U17 -to f_nWR
+set_location_assignment PIN_R18 -to f_CLK
 set_location_assignment PIN_P18 -to PMOD_C[3]
-set_location_assignment PIN_R14 -to PMOD_D[0]
-set_location_assignment PIN_R15 -to PMOD_D[1]
-set_location_assignment PIN_P15 -to PMOD_D[2]
-set_location_assignment PIN_P14 -to PMOD_D[3]
+set_location_assignment PIN_R14 -to f_nRXF
+set_location_assignment PIN_R15 -to f_nRD
+set_location_assignment PIN_P15 -to f_nSIWU
+set_location_assignment PIN_P14 -to f_nOE
 
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to PMOD_A[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to PMOD_A[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to PMOD_A[2]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to PMOD_A[3]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to PMOD_B[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to PMOD_B[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to PMOD_B[2]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to PMOD_B[3]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to PMOD_C[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to PMOD_C[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to PMOD_C[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to f_D[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to f_D[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to f_D[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to f_D[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to f_D[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to f_D[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to f_D[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to f_D[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to f_nTXE
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to f_nWR
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to f_CLK
 set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to PMOD_C[3]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to PMOD_D[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to PMOD_D[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to PMOD_D[2]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to PMOD_D[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to f_nRXF
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to f_nRD
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to f_nSIWU
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to f_nOE
 
 set_instance_assignment -name CURRENT_STRENGTH_NEW 2MA -to PMOD_A[0]
 set_instance_assignment -name CURRENT_STRENGTH_NEW 2MA -to PMOD_A[1]

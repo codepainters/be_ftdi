@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 
-entity if_test_top is
+entity if_test is
 port(
 	-- Clock ins, SYS_CLK = 50MHz, USER_CLK = 24MHz 
 	SYS_CLK : in std_logic;
@@ -13,11 +13,11 @@ port(
 
 	-- inputs from BE_FTDI
 	f_CLK : in std_logic;
-	f_nOE : in std_logic;
 	f_nRXF : in std_logic;
 	f_nTXE : in std_logic;
 
 	-- outputs to BE_FTDI
+	f_nOE : out std_logic;
 	f_nWR : out std_logic;
 	f_nRD : out std_logic;
 	f_nSIWU : out std_logic;
@@ -27,9 +27,9 @@ port(
 
 );
 
-end entity if_test_top;
+end entity if_test;
 
-architecture arch of if_test_top is
+architecture arch of if_test is
 
 	type fsm_state is (s_idle, s_read, s_write);
 	signal state : fsm_state := s_idle;
@@ -54,7 +54,7 @@ begin
 			if counter_en = '1' and state = s_write and f_nTXE = '0' then
 				count <= count + 1;
 			else
-				count <= 0;
+				count <= to_unsigned(0, count'length);
 			end if;
 		end if;
 	end process;
@@ -69,7 +69,7 @@ begin
 				if f_nRXF = '0' then
 					state <= s_read;
 				-- otherwise, can we start writing?	
-				elsif wr_data_avail = '1' and f_nTXE = '0' then 
+				elsif counter_en = '1' and f_nTXE = '0' then 
 					state <= s_write;
 				end if;  
 
@@ -106,10 +106,10 @@ begin
 	f_nRD <= '0' when state = s_read else '1';
 	
 	-- no wait states writing from the counter, eihter
-	f_nWR <= counter_en = '1' and state = s_write and f_nTXE = '0';
+	f_nWR <= '0' when counter_en = '1' and state = s_write and f_nTXE = '0' else '1';
 	 
 	-- drive outputs in s_write mode
-	f_D <= count when state = s_write else (others => 'Z');
+	f_D <= std_logic_vector(count) when state = s_write else (others => 'Z');
 		
 end architecture arch;
 

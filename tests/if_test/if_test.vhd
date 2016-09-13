@@ -56,8 +56,9 @@ begin
 	dbg3 <= '0' when state = s_write  else '1';
 	dbg4 <= '0' when f_nTXE = '0' else '1';
 
-	USER_LED <= (1 => dbg1, 2 => dbg2, 3 => dbg3, 4 => dbg4, others => '1');
-	
+	--  USER_LED <= (1 => dbg1, 2 => dbg2, 3 => dbg3, 4 => dbg4, others => '1');
+	USER_LED <= wr_reg;
+
 	counter : process(f_CLK) is
 	begin
 		if rising_edge(f_CLK) then

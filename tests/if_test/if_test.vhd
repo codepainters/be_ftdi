@@ -24,12 +24,24 @@ port(
 
 	-- bidirectional data bus
 	f_D : inout std_logic_vector(7 downto 0)
-
 );
 
 end entity if_test;
 
 architecture arch of if_test is
+
+	-- array of test data  
+	type byte_table is array(integer range <>) of std_logic_vector(7 downto 0);
+
+	-- this sequence of 23 bytes is continuously writen to FTDI FIFO, it contains
+	-- moving 1 test + flipping most/all bits at once, to detect signalling issues.
+	-- Length is a prime number, to avoid starting sequence from 0 on each 
+	-- USB transaction.
+	constant test_data : byte_table(0 to 22) := (
+		X"FF", X"00", X"01", X"02", X"04", X"08", X"10", X"20", X"40", X"80",
+		X"40", X"20", X"10", X"08", X"04", X"02", X"01", X"AA", X"55", X"00",
+		X"AA", X"00", X"55" 
+	);
 
 	type fsm_state is (s_idle, s_read, s_write);
 	signal state : fsm_state := s_idle;
@@ -40,32 +52,37 @@ architecture arch of if_test is
 	-- any writes from USB goes to this register
 	signal wr_reg : std_logic_vector(7 downto 0);
 	
-	-- counter - generates test sequence
-	signal count : unsigned(7 downto 0);
+	-- counter - indexes test sequence
+	signal count : integer range 0 to test_data'high := 0;
 	
-	signal dbg1 : std_logic;
-	signal dbg2 : std_logic;
-	signal dbg3 : std_logic;
-	signal dbg4 : std_logic;
+	-- signal dbg1 : std_logic;
+	-- signal dbg2 : std_logic;
+	-- signal dbg3 : std_logic;
+	-- signal dbg4 : std_logic;
 	
 begin
-
-	-- various debug signals
-	dbg1 <= '0' when counter_en = '1' and state = s_write and f_nTXE = '0' else '1';
-	dbg2 <= '0' when counter_en = '1' else '1';
-	dbg3 <= '0' when state = s_write  else '1';
-	dbg4 <= '0' when f_nTXE = '0' else '1';
+	
+	-- various debug signals, uncoment if in troubles :)
+	-- dbg1 <= '0' when counter_en = '1' and state = s_write and f_nTXE = '0' else '1';
+	-- dbg2 <= '0' when counter_en = '1' else '1';
+	-- dbg3 <= '0' when state = s_write  else '1';
+	-- dbg4 <= '0' when f_nTXE = '0' else '1';
 
 	--  USER_LED <= (1 => dbg1, 2 => dbg2, 3 => dbg3, 4 => dbg4, others => '1');
+	
 	USER_LED <= wr_reg;
 
 	counter : process(f_CLK) is
 	begin
 		if rising_edge(f_CLK) then
 			if counter_en = '1' and state = s_write and f_nTXE = '0' then
-				count <= count + 1;
+				if count < test_data'high then
+					count <= count + 1;
+				else 
+					count <= 0;
+				end if;					
 			else
-				count <= to_unsigned(0, count'length);
+				count <= 0;
 			end if;
 		end if;
 	end process;
@@ -120,7 +137,7 @@ begin
 	f_nWR <= '0' when counter_en = '1' and state = s_write and f_nTXE = '0' else '1';
 	 
 	-- drive outputs in s_write mode
-	f_D <= std_logic_vector(count) when state = s_write else (others => 'Z');
+	f_D <= test_data(count) when state = s_write else (others => 'Z');
 		
 	-- no use for short packet, but we have to pull it up
 	f_nSIWU <= '1';

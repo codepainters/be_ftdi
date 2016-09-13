@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.5)
+project(be_ftdi)
+
+add_executable(bf_leds ft_fifo.c bf_leds.c)
+target_link_libraries(bf_leds ftdi)
+
+add_executable(bf_rxfifo ft_fifo.c bf_rxfifo.c)
+target_link_libraries(bf_rxfifo ftdi)

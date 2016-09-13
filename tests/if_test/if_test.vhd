@@ -43,11 +43,21 @@ architecture arch of if_test is
 	-- counter - generates test sequence
 	signal count : unsigned(7 downto 0);
 	
+	signal dbg1 : std_logic;
+	signal dbg2 : std_logic;
+	signal dbg3 : std_logic;
+	signal dbg4 : std_logic;
+	
 begin
 
-	-- show written value on LEDs
-	USER_LED <= wr_reg;
+	-- various debug signals
+	dbg1 <= '0' when counter_en = '1' and state = s_write and f_nTXE = '0' else '1';
+	dbg2 <= '0' when counter_en = '1' else '1';
+	dbg3 <= '0' when state = s_write  else '1';
+	dbg4 <= '0' when f_nTXE = '0' else '1';
 
+	USER_LED <= (1 => dbg1, 2 => dbg2, 3 => dbg3, 4 => dbg4, others => '1');
+	
 	counter : process(f_CLK) is
 	begin
 		if rising_edge(f_CLK) then
@@ -86,8 +96,8 @@ begin
 
 			when s_write =>
 				-- write from FPGA perspective, i.e. FPGA -> FTDI -> USB 
-				-- abort if there is pending read (higher prio), or FIFO is full
-				if f_nRXF = '0' or f_nTXE = '1' then
+				-- abort if there is pending read (higher prio)
+				if f_nRXF = '0' then
 					state <= s_idle;
 				end if;	
 					
@@ -110,6 +120,9 @@ begin
 	 
 	-- drive outputs in s_write mode
 	f_D <= std_logic_vector(count) when state = s_write else (others => 'Z');
+		
+	-- no use for short packet, but we have to pull it up
+	f_nSIWU <= '1';
 		
 end architecture arch;
 

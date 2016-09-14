@@ -1,11 +1,14 @@
 # Quartus dirs
 *.bak
 *.qws
-*/tests/*/db/
-*/tests/*/output_files/
-*/tests/*/incremental_db/
-*/tests/*/simulation/
-*/tests/*/timing/
-*/tests/*/testbench/
-*/tests/*/*_sim/
-*/tests/*/*.rpt
+tests/if_test/db/
+tests/if_test/output_files/
+tests/if_test/incremental_db/
+tests/if_test/simulation/
+tests/if_test/timing/
+tests/if_test/testbench/
+tests/if_test/*_sim/
+tests/if_test/*.rpt
+tests/host/.idea
+tests/host/build
+

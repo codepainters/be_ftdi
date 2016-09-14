@@ -28,3 +28,9 @@ void ft_fifo_write_byte(struct ftdi_context* ftdi, uint8_t b);
  * Receive data from FT232H FIFO.
  */
 int ft_fifo_read_bytes(struct ftdi_context* ftdi, uint8_t* buf, int buf_size);
+
+/**
+ * Flush RX/TX buffers.
+ */
+void ft_fifo_flush_buffers(struct ftdi_context* ftdi);
+

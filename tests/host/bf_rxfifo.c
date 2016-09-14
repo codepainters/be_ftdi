@@ -32,6 +32,7 @@ int main() {
 
     // write 0x00 to stop and reset the generator, then 0x01 to start it again
     ft_fifo_write_byte(ftdi, 0x00);
+    ft_fifo_flush_buffers(ftdi);
     ft_fifo_write_byte(ftdi, 0x01);
 
     seq_ptr = 0;
@@ -44,15 +45,17 @@ int main() {
     for (;;) {
         ret = ft_fifo_read_bytes(ftdi, buf, sizeof(buf));
         // printf("%d\n", ret);
-        bytes_received += ret;
 
         // sequence validation
         for (i = 0; i < ret; i++) {
             if (test_data[seq_ptr] != buf[i]) {
+                // printf("offs: %lu, exp. 0x%02x - got 0x%02x \n", bytes_received + i, test_data[seq_ptr], buf[i]);
                 errors++;
             }
             seq_ptr = (seq_ptr + 1) % sizeof(test_data);
         }
+
+        bytes_received += ret;
 
         // print stats every 5 seconds
         gettimeofday(&current_time, NULL);

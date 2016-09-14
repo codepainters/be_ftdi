@@ -82,3 +82,14 @@ int ft_fifo_read_bytes(struct ftdi_context* ftdi, uint8_t* buf, int buf_size)
 
     return ret;
 }
+
+void ft_fifo_flush_buffers(struct ftdi_context* ftdi)
+{
+    int ret = ftdi_usb_purge_buffers(ftdi);
+    if (ret != 0) {
+        fprintf(stderr, "Failed to purge buffers");
+        ftdi_free(ftdi);
+        exit(EXIT_FAILURE);
+    }
+}
+

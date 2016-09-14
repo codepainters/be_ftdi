@@ -70,7 +70,7 @@ begin
 
 	--  USER_LED <= (1 => dbg1, 2 => dbg2, 3 => dbg3, 4 => dbg4, others => '1');
 	
-	USER_LED <= wr_reg;
+	USER_LED <= not wr_reg;
 
 	counter : process(f_CLK) is
 	begin

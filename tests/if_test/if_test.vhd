@@ -122,7 +122,7 @@ begin
 				-- abort if there is pending read (higher prio)
 				if f_nRXF = '0' then
 					state <= s_idle;
-				else if f_nTXE = '1' then
+				elsif f_nTXE = '1' then
 					-- FIFO full, enter wait state
 					state <= s_write_ws;
 				end if;	
@@ -131,7 +131,7 @@ begin
 				if f_nRXF = '0' then
 					-- abort if there is pending read (higher prio)
 					state <= s_idle;
-				else if f_nTXE = '0' then
+				elsif f_nTXE = '0' then
 					-- FTDI ready for more data go back to s_write
 		 			state <= s_write;
 				end if;

@@ -47,7 +47,10 @@ architecture arch of if_test is
 	signal state : fsm_state := s_idle;
 
 	-- set to 1 to enable counter
-	signal counter_en : std_logic := '0';
+	signal counter_en : boolean;
+
+    -- signal controlling the counter
+	signal count_strb : boolean;
 
 	-- any writes from USB goes to this register
 	signal wr_reg : std_logic_vector(7 downto 0);
@@ -71,11 +74,14 @@ begin
 	--  USER_LED <= (1 => dbg1, 2 => dbg2, 3 => dbg3, 4 => dbg4, others => '1');
 	
 	USER_LED <= not wr_reg;
+		
+    counter_en <= wr_reg(0) = '1';
+    count_strb <= counter_en and state = s_write and f_nTXE = '0';
 
 	counter : process(f_CLK) is
 	begin
 		if rising_edge(f_CLK) then
-			if counter_en = '1' and state = s_write and f_nTXE = '0' then
+			if count_strb then
 				if count < test_data'high then
 					count <= count + 1;
 				else 
@@ -97,7 +103,7 @@ begin
 				if f_nRXF = '0' then
 					state <= s_read;
 				-- otherwise, can we start writing?	
-				elsif counter_en = '1' and f_nTXE = '0' then 
+				elsif counter_en and f_nTXE = '0' then 
 					state <= s_write;
 				end if;  
 
@@ -109,7 +115,6 @@ begin
 				else
 					-- latch next value, f_nRD is controlled with separate statement 
 					wr_reg <= f_D;
-					counter_en <= f_D(0);
 				end if;
 
 			when s_write =>
@@ -134,7 +139,9 @@ begin
 	f_nRD <= '0' when state = s_read else '1';
 	
 	-- no wait states writing from the counter, eihter
-	f_nWR <= '0' when counter_en = '1' and state = s_write and f_nTXE = '0' else '1';
+    -- note: f_nTXE only gates the counter, f_nWR is low all the time
+    -- counting is enabled and we are writing to FTDI
+	f_nWR <= '0' when counter_en and state = s_write else '1';
 	 
 	-- drive outputs in s_write mode
 	f_D <= test_data(count) when state = s_write else (others => 'Z');

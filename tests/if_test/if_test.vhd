@@ -43,7 +43,7 @@ architecture arch of if_test is
 		X"AA", X"00", X"55" 
 	);
 
-	type fsm_state is (s_idle, s_read, s_write, s_write_ws);
+	type fsm_state is (s_idle, s_read, s_write);
 	signal state : fsm_state := s_idle;
 
 	-- set to 1 to enable counter
@@ -81,12 +81,14 @@ begin
 	counter : process(f_CLK) is
 	begin
 		if rising_edge(f_CLK) then
-			if count_strb then
-				if count < test_data'high then
-					count <= count + 1;
-				else 
-					count <= 0;
-				end if;					
+			if counter_en then
+					if count_strb then
+					if count < test_data'high then
+						count <= count + 1;
+					else 
+						count <= 0;
+					end if;					
+				end if;
 			else
 				count <= 0;
 			end if;
@@ -122,19 +124,7 @@ begin
 				-- abort if there is pending read (higher prio)
 				if f_nRXF = '0' then
 					state <= s_idle;
-				elsif f_nTXE = '1' then
-					-- FIFO full, enter wait state
-					state <= s_write_ws;
 				end if;	
-					
-			when s_write_ws =>
-				if f_nRXF = '0' then
-					-- abort if there is pending read (higher prio)
-					state <= s_idle;
-				elsif f_nTXE = '0' then
-					-- FTDI ready for more data go back to s_write
-		 			state <= s_write;
-				end if;
 					
 			when others =>
 				state <= s_idle;

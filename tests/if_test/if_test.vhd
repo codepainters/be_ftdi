@@ -43,7 +43,7 @@ architecture arch of if_test is
 		X"AA", X"00", X"55" 
 	);
 
-	type fsm_state is (s_idle, s_read, s_write);
+	type fsm_state is (s_idle, s_read, s_write, s_write_ws);
 	signal state : fsm_state := s_idle;
 
 	-- set to 1 to enable counter
@@ -122,7 +122,19 @@ begin
 				-- abort if there is pending read (higher prio)
 				if f_nRXF = '0' then
 					state <= s_idle;
+				else if f_nTXE = '1' then
+					-- FIFO full, enter wait state
+					state <= s_write_ws;
 				end if;	
+					
+			when s_write_ws =>
+				if f_nRXF = '0' then
+					-- abort if there is pending read (higher prio)
+					state <= s_idle;
+				else if f_nTXE = '0' then
+					-- FTDI ready for more data go back to s_write
+		 			state <= s_write;
+				end if;
 					
 			when others =>
 				state <= s_idle;

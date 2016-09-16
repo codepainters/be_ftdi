@@ -8,7 +8,8 @@
 #define VID 0x1222
 #define PID 0x1002
 
-#define BUF_SIZE    (1024 * 1024)
+// recommended buffer size is n * 510 
+#define BUF_SIZE    (2048 * 510)
 
 static const uint8_t test_data[23] = {
         0xFF, 0x00, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80,

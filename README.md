@@ -13,3 +13,5 @@ Downstream (USB -> FPGA) throughput:
  * TBD
 
 See [tests](tests) directory for VHDL & C usage examples.
+
+All the project files are licensed under Modified BSD License (see LICENSE.txt).

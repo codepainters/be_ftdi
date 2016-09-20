@@ -63,13 +63,19 @@ struct ftdi_context* ft_fifo_open(int vid, int pid)
     return ftdi;
 }
 
-void ft_fifo_write_byte(struct ftdi_context* ftdi, uint8_t b)
+void ft_fifo_write_bytes(struct ftdi_context* ftdi, uint8_t* buf, int size)
 {
-    int ret = ftdi_write_data(ftdi, &b, 1);
+    // Note: ftdi_write_data() tries to send all the data before returning
+    int ret = ftdi_write_data(ftdi, buf, size);
     if (ret < 0) {
         fprintf(stderr, "ftdi_write_data failed: %d (%s)\n", ret, ftdi_get_error_string(ftdi));
         exit(EXIT_FAILURE);
     }
+}
+
+void ft_fifo_write_byte(struct ftdi_context* ftdi, uint8_t b)
+{
+    ft_fifo_read_bytes(ftdi, &b, 1);
 }
 
 int ft_fifo_read_bytes(struct ftdi_context* ftdi, uint8_t* buf, int buf_size)

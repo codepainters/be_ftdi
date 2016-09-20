@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 
-entity if_test is
+entity fpga_us is
 port(
 	-- Clock ins, SYS_CLK = 50MHz, USER_CLK = 24MHz 
 	SYS_CLK : in std_logic;
@@ -26,9 +26,9 @@ port(
 	f_D : inout std_logic_vector(7 downto 0)
 );
 
-end entity if_test;
+end entity fpga_us;
 
-architecture arch of if_test is
+architecture arch of fpga_us is
 
 	-- array of test data  
 	type byte_table is array(integer range <>) of std_logic_vector(7 downto 0);

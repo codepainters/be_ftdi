@@ -9,6 +9,14 @@ tests/if_test/timing/
 tests/if_test/testbench/
 tests/if_test/*_sim/
 tests/if_test/*.rpt
+tests/fpga_ds/db/
+tests/fpga_ds/output_files/
+tests/fpga_ds/incremental_db/
+tests/fpga_ds/simulation/
+tests/fpga_ds/timing/
+tests/fpga_ds/testbench/
+tests/fpga_ds/*_sim/
+tests/fpga_ds/*.rpt
 tests/host/.idea
 tests/host/build
 

@@ -39,7 +39,7 @@
 set_global_assignment -name SOURCE_TCL_SCRIPT_FILE bemicro_probe_pins.qsf
 set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED WITH WEAK PULL-UP"
 
-set_global_assignment -name TOP_LEVEL_ENTITY if_test
+set_global_assignment -name TOP_LEVEL_ENTITY fpga_ds
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 16.0.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "15:51:21  MAY 23, 2016"
 set_global_assignment -name LAST_QUARTUS_VERSION 16.0.0
@@ -51,13 +51,16 @@ set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
 set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
 
-set_global_assignment -name VHDL_FILE if_test.vhd
+set_global_assignment -name VHDL_FILE fpga_ds.vhd
+set_global_assignment -name VHDL_FILE crc8.vhd
 
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+
+
 
 
 

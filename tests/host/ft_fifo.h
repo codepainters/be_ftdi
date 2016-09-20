@@ -17,6 +17,15 @@
 struct ftdi_context* ft_fifo_open(int vid, int pid);
 
 /**
+ * Write data to FT232H FIFO.
+ *
+ * @param ftdi  interface context
+ * @param buf   data to send
+ * @param size  number of bytes to send
+ */
+void ft_fifo_write_bytes(struct ftdi_context* ftdi, uint8_t* buf, int size);
+
+/**
  * Write a single byte to FT232H FIFO.
  *
  * @param ftdi  interface context

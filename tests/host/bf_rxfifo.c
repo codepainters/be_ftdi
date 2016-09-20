@@ -5,6 +5,8 @@
 
 #include "ft_fifo.h"
 
+#pragma clang diagnostic ignored "-Wmissing-noreturn"
+
 #define VID 0x1222
 #define PID 0x1002
 

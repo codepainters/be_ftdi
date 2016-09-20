@@ -1,4 +1,4 @@
-## Generated SDC file "if_test.out.sdc"
+## Generated SDC file "fpga_us.out.sdc"
 
 ## Copyright (C) 1991-2016 Altera Corporation. All rights reserved.
 ## Your use of Altera Corporation's design tools, logic functions 

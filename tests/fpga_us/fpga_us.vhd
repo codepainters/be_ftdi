@@ -1,3 +1,19 @@
+----------------------------------------------------------------------------------
+-- Be_FTDI upstream test code
+--
+-- Copyright (c) 2016, Przemyslaw Wegrzyn <pwegrzyn@codepainters.com>
+-- All rights reserved.
+--
+-- This file is distributed under the Modified BSD License.
+--
+-- In this test FPGA sends repeated sequence of bytes which is validated 
+-- on the PC. To enable the generator a single byte has to be written first
+-- by the PC with LSB set to 1 (send 0 LSB to stop and reset the sequence).
+--
+-- Bytes received from the PC are also displayed on the 8 on-board LEDs
+-- for a visual debugging aid.
+----------------------------------------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -72,9 +88,11 @@ begin
 	-- dbg4 <= '0' when f_nTXE = '0' else '1';
 
 	--  USER_LED <= (1 => dbg1, 2 => dbg2, 3 => dbg3, 4 => dbg4, others => '1');
-	
+
+	-- show the last byte written from the PC
 	USER_LED <= not wr_reg;
-		
+	
+    -- LSB of the byte from PC enables the sequence generator    
     counter_en <= wr_reg(0) = '1';
     count_strb <= counter_en and state = s_write and f_nTXE = '0';
 

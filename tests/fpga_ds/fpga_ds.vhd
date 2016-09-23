@@ -1,3 +1,16 @@
+----------------------------------------------------------------------------------
+-- Be_FTDI downstream test code
+-- 
+-- Copyright (c) 2016, Przemyslaw Wegrzyn <pwegrzyn@codepainters.com>
+-- All rights reserved.
+--
+-- This file is distributed under the Modified BSD License.
+--
+-- In this test stream of bytes is received from USB at full speed and  its CRC8 
+-- is calculated. CRC is displayed on on the LEDs avaialable on the BeMicro board.
+-- Use PB4 push button to reset CRC before starting the test again.
+----------------------------------------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;

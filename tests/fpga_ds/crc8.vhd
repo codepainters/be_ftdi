@@ -1,3 +1,14 @@
+----------------------------------------------------------------------------------
+-- Be_FTDI downstream test code
+--
+-- Copyright (c) 2016, Przemyslaw Wegrzyn <pwegrzyn@codepainters.com>
+-- All rights reserved.
+--
+-- This file is distributed under the Modified BSD License.
+--
+-- Simple table-driven CRC8 implementation.
+----------------------------------------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;

@@ -1,4 +1,10 @@
 /**
+ * Copyright (c) 2014, Przemyslaw Wegrzyn <pwegrzyn@codepainters.com>
+ * All rights reserved.
+ *
+ * This file is distributed under the Modified BSD License.
+ * See LICENSE.txt for details.
+ *
  * Common code for FT232H Sync FIFO mode.
  *
  * Note: all errors are printed to stderr, and exit() is called.

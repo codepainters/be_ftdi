@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2016, Przemyslaw Wegrzyn <pwegrzyn@codepainters.com>
+ * All rights reserved.
+ *
+ * This file is distributed under the Modified BSD License.
+ * See LICENSE.txt for details.
+ *
+ * RX test - receive data from FPGA until interrupted, verify it, 
+ * print statistics every 5 seconds.
+ */
+
 #include <unistd.h>
 #include <ftdi.h>
 #include <stdio.h>

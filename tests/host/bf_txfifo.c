@@ -1,3 +1,17 @@
+/**
+ * Copyright (c) 2016, Przemyslaw Wegrzyn <pwegrzyn@codepainters.com>
+ * All rights reserved.
+ *
+ * This file is distributed under the Modified BSD License.
+ * See LICENSE.txt for details.
+ *
+ * Sending test:
+ * - randomize 1MB of data
+ * - send it n times to FPGA, where n is given as command line parameter
+ * - print CRC8 of the data (to be compated with LEDs on FPGA board) 
+ * - print speed statistics every 5 seconds
+ */
+
 #include <unistd.h>
 #include <ftdi.h>
 #include <stdio.h>

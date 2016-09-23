@@ -1,4 +1,10 @@
 /**
+ * Copyright (c) 2016, Przemyslaw Wegrzyn <pwegrzyn@codepainters.com>
+ * All rights reserved.
+ *
+ * This file is distributed under the Modified BSD License.
+ * See LICENSE.txt for details.
+ * 
  * Common code for FT232H Sync FIFO mode.
  */
 

@@ -1,4 +1,10 @@
 /**
+ * Copyright (c) 2016, Przemyslaw Wegrzyn <pwegrzyn@codepainters.com>
+ * All rights reserved.
+ *
+ * This file is distributed under the Modified BSD License.
+ * See LICENSE.txt for details.
+ * 
  * Helper tool clearing FT232H's configuration EEPROM.
  *
  * Once EEPROM is programmed, the device enumarates with different

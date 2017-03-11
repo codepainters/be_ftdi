@@ -81,7 +81,7 @@ void ft_fifo_write_bytes(struct ftdi_context* ftdi, uint8_t* buf, int size)
 
 void ft_fifo_write_byte(struct ftdi_context* ftdi, uint8_t b)
 {
-    ft_fifo_read_bytes(ftdi, &b, 1);
+    ft_fifo_write_bytes(ftdi, &b, 1);
 }
 
 int ft_fifo_read_bytes(struct ftdi_context* ftdi, uint8_t* buf, int buf_size)

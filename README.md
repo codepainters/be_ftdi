@@ -1,7 +1,7 @@
 Be\_FTDI
 ========
 
-Simple `FT232H`-based USB interface for the great [BeMicro Max10](https://www.arrow.com/en/products/bemicromax10/arrow-development-tools) FPGA board.  
+Simple `FT232H`-based USB interface for the great [BeMicro Max10](http://www.alterawiki.com/wiki/BeMicro_Max_10) FPGA board.  
 
 ![Be\_FTDI Logo](images/be_ftdi.jpg)
 
